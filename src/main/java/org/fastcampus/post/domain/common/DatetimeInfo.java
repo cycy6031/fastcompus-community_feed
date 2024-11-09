@@ -11,7 +11,7 @@ public class DatetimeInfo {
         this.dateTime = LocalDateTime.now();
     }
 
-    public void ukpdateEditDatetime(){
+    public void updateEditDatetime(){
         this.isEdited = true;
         this.dateTime = LocalDateTime.now();
     }
