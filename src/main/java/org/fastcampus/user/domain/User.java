@@ -1,4 +1,6 @@
-package org.fastcompus.user.domain;
+package org.fastcampus.user.domain;
+
+import org.fastcampus.common.domain.PositiveIntegerCounter;
 
 import java.util.Objects;
 
@@ -6,14 +8,18 @@ public class User {
 
     private final Long id;
     private final UserInfo info;
-    private final UserRelationCounter followingCount;
-    private final UserRelationCounter followerCounter;
+    private final PositiveIntegerCounter followingCount;
+    private final PositiveIntegerCounter followerCounter;
 
-    public User(Long id, UserInfo info) {
+    public User(Long id, UserInfo userInfo) {
+        if(userInfo == null){
+            throw new IllegalArgumentException();
+        }
+
         this.id = id;
-        this.info = info;
-        this.followingCount = new UserRelationCounter();
-        this.followerCounter = new UserRelationCounter();
+        this.info = userInfo;
+        this.followingCount = new PositiveIntegerCounter();
+        this.followerCounter = new PositiveIntegerCounter();
 
     }
 
@@ -56,5 +62,9 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public Long getId() {
+        return id;
     }
 }
